@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: buff-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: api_route
+          uri: http://localhost:8888
+          predicates:
+            - Path=/api/**
+server:
+  port: 8091
+logging:
+  level:
+    org.springframework: trace
+
+#dubbo
+dubbo:
+  application:
+    name: dubbo-springboot-demo-consumer
+    logger: slf4j
+    qos-port: 33333
+  registry:
+    address: nacos://${nacos.address:127.0.0.1}:8848?username=nacos&password=nacos
+

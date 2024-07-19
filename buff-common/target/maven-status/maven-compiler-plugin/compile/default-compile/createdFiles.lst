@@ -1,0 +1,12 @@
+com\buff\common\model\entity\PostThumb.class
+com\buff\common\model\entity\UserInterfaceInfo.class
+com\buff\common\model\entity\PostFavour.class
+com\buff\common\model\enums\UserRoleEnum.class
+com\buff\common\service\InnerInterfaceInfoService.class
+com\buff\common\model\entity\Post.class
+com\buff\common\model\entity\User.class
+com\buff\common\model\enums\InterfaceInfoStatusEnum.class
+com\buff\common\service\InnerUserInterfaceInfoService.class
+com\buff\common\service\InnerUserService.class
+com\buff\common\model\enums\FileUploadBizEnum.class
+com\buff\common\model\entity\InterfaceInfo.class
