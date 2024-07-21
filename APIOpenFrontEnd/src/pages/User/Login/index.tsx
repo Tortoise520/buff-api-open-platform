@@ -17,6 +17,7 @@ import { Alert, message, Tabs } from 'antd';
 import { createStyles } from 'antd-style';
 import React, { useState } from 'react';
 import Settings from '../../../../config/defaultSettings';
+import {flushSync} from "react-dom";
 const useStyles = createStyles(({ token }) => {
   return {
     action: {
@@ -88,22 +89,28 @@ const Login: React.FC = () => {
         ...values,
       });
       if (res.data) {
-        const defaultLoginSuccessMessage = '登录成功！';
-        message.success(defaultLoginSuccessMessage);
-
-        setInitialState({
-          loginUser: res.data,
-        });
         const urlParams = new URL(window.location.href).searchParams;
-        history.push(urlParams.get('redirect') || '/');
+        history.push(urlParams.get('redirect') || '/');debugger
+        flushSync(() => {
+          setInitialState({
+            loginUser: res.data,
+          });
+        })
+
+        message.success('登录成功！');
+        setUserLoginState({
+          status: 'ok',
+        });
 
         return;
       }
       console.log(res.message);
     } catch (error) {
-      const defaultLoginFailureMessage = '登录失败，请重试！';
       console.log(error);
-      message.error(defaultLoginFailureMessage);
+      message.error('登录失败，请重试！');
+      setUserLoginState({
+        status: 'error',
+      });
     }
   };
   const { status, type: loginType } = userLoginState;
